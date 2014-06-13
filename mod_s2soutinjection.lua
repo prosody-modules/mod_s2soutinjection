@@ -31,7 +31,7 @@ module:hook("route/remote", function(event)
 	for _, item in ipairs(inject) do
 		local host, port = item[1] or item, tonumber(item[2]) or 5269;
 		if isip(host) then
-			ip_hosts[#ip_hosts+1] = { ip = new_ip(host), port = port }
+			ip_hosts[#ip_hosts+1] = { ip = new_ip(host, (host:find(":") and "IPv6") or "IPv4"), port = port }
 		else
 			srv_hosts[#srv_hosts+1] = { target = host, port = port }
 		end
